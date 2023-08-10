@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Select from 'react-select';
 
-function App() {
+const App = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const options = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' },
+  ];
+
+  const customStyles = {
+    container: (provided) => ({
+      ...provided,
+      width: '200px'
+    }),
+    menu: (provided) => ({
+      ...provided,
+      maxHeight: '200px'
+    }),
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>React Select Dropdown</h1>
+      <Select 
+        options={options}
+        placeholder="Choose an option..."
+        onChange={setSelectedOption}
+        styles={customStyles}
+      />
+      {selectedOption && <div>Selected: {selectedOption.label}</div>}
     </div>
   );
 }
 
 export default App;
+
